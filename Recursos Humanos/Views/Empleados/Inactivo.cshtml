@@ -1,0 +1,228 @@
+﻿@model IEnumerable<Recursos_Humanos.Models.Empleados>
+
+@{
+    ViewBag.Title = "Inactivo";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<h2>Informes de Empleados Inactivos</h2>
+
+@using (Html.BeginForm("Inactivo", "Empleados", FormMethod.Get))
+{
+
+    <div class="container">
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                @Html.TextBox("busco", null, new { @class = "form-control", @placeholder = "Buscar empleado por Fecha" })
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    @Html.ActionLink(" ", "Inactivo", "Empleados", null, new { @class = "fas fa-redo-alt btn btn-primary", style = "margin-left: 85%" })
+                </div>
+            </div>
+        </form>
+    </div>
+
+}
+
+<br />
+<table class="table table-striped">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo_Empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salario)
+        </th>
+        <th>
+            Fecha de salida
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cargo1.Cargo1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departamento1.Nombre)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo_Empleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_DE_Ingreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cargo1.Cargo1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento1.Nombre)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+    if (annyang) {
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+            'show tps report': function () {
+                $('#tpsreport').animate({ bottom: '-100px' });
+            },
+
+            'Cargo': Cargo,
+            'agregar nuevo cargo':CargoCrear,
+            'Departamento': Departamento,
+            'agregar nuevo Departamento': DepartamentoCrear,
+            'Empleado': Empleado,
+            'agregar nuevo Empleado':EmpleadoCrear,
+
+            'Nomina': Nomina,
+            'agregar nueva Nomina': NominaCrear,
+            'Salida': Salida,
+            'agregar nueva salida': SalidaCrear,
+            'Licencia': Licencia,
+            'agregar nueva licencia': LicenciaCrear,
+            'Permiso': Permisos,
+            'agregar nuevo permiso': PermisosCrear,
+            'Vacaciones': Vacaciones,
+            'agregar nueva vaciones': VacacionesCrear,
+
+
+
+            'Informe de Empleados': Empleadosinac,
+            'Informe de Nomina': InformeNomina,
+            'Informe de permisos': InformePermisos,
+            'Informe de vacaciones': InfomreVacaciones,
+            'Informe de licencias': InformeLicencias,
+            'Informe de salidas': InfomeSalidas,
+
+
+
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+        annyang.setLanguage("es-MX")
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+
+    function Empleado() {
+        document.location.href = "http://localhost:53909/Empleados";
+    }
+    function EmpleadoCrear() {
+        document.location.href = "http://localhost:53909/Empleados/Create";
+    }
+    function EmpleadoEli() {
+        document.location.href = "http://localhost:53909/Empleados/Create";
+    }
+    function Cargo() {
+        document.location.href = "http://localhost:53909/cargoes";
+    }
+    function CargoCrear() {
+        document.location.href = "http://localhost:53909/cargoes/Create";
+    }
+    function CargoEli() {
+        document.location.href = "http://localhost:53909/cargoes/Create";
+    }
+    function Departamento() {
+        document.location.href = "http://localhost:53909/Departamentoes";
+    }
+    function DepartamentoCrear() {
+        document.location.href = "http://localhost:53909/Departamentoes/Create";
+    }
+    function DepartamentoEli() {
+        document.location.href = "http://localhost:53909/Departamentoes/Create";
+    }
+
+
+
+
+        function Licencia() {
+            document.location.href = "http://localhost:53909/Licencias";
+    }
+    function LicenciaCrear() {
+        document.location.href = "http://localhost:53909/Licencias/Create";
+    }
+    function Nomina() {
+        document.location.href = "http://localhost:53909/Nominas";
+    }
+    function NominaCrear() {
+        document.location.href = "http://localhost:53909/Nominas/Create";
+    }
+    function Salida() {
+        document.location.href = "http://localhost:53909/Salidas";
+    }
+
+    function SalidaCrear() {
+        document.location.href = "http://localhost:53909/Salidas/Create";
+    }
+    function Permisos() {
+            document.location.href = "http://localhost:53909/Permisoes";
+    }
+    function PermisosCrear() {
+        document.location.href = "http://localhost:53909/Permisoes/Create";
+    }
+        function VacacionesCrear() {
+            document.location.href = "http://localhost:53909/Vacaciones/Create";
+        }
+    function Vacaciones() {
+        document.location.href = "http://localhost:53909/Vacaciones";
+    }
+
+
+
+        function Empleadosinac() {
+            document.location.href = "http://localhost:53909/Empleados/Inactivo";
+        }
+        function InformeNomina() {
+            document.location.href = "http://localhost:53909/Nominas/NominaInforme";
+        }
+        function InformePermisos() {
+            document.location.href = "http://localhost:53909/Permisoes/PermisosInforme";
+        }
+        function InfomreVacaciones() {
+            document.location.href = "http://localhost:53909/Vacaciones/VacacionesInforme";
+        }
+        function InformeLicencias() {
+            document.location.href = "http://localhost:53909/Licencias/LicenciasInforme";
+        }
+        function  InfomeSalidas() {
+            document.location.href = "http://localhost:53909/Salidas/SalidasInforme";
+        }
+
+</script>

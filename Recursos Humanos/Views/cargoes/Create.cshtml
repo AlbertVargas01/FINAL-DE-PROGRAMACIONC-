@@ -1,0 +1,178 @@
+﻿@model Recursos_Humanos.Models.cargo
+
+@{
+    ViewBag.Title = "Create";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<h2>Create</h2>
+
+<div class="container">
+    @Html.ActionLink(" ", "Index", null, new { @class = "fas fa-arrow-circle-left btn btn-primary" })
+</div>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>cargos</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cargo1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cargo1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cargo1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+    if (annyang) {
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+            'show tps report': function () {
+                $('#tpsreport').animate({ bottom: '-100px' });
+            },
+            'escucha': escucha,
+            'Cargo': Cargo,
+            'agregar nuevo cargo': CargoCrear,
+            'Departamento': Departamento,
+            'agregar nuevo Departamento': DepartamentoCrear,
+            'Empleado': Empleado,
+            'agregar nuevo Empleado': EmpleadoCrear,
+
+            'Nomina': Nomina,
+            'agregar nueva Nomina': NominaCrear,
+            'Salida': Salida,
+            'agregar nueva salida': SalidaCrear,
+            'Licencia': Licencia,
+            'agregar nueva licencia': LicenciaCrear,
+            'Permiso': Permisos,
+            'agregar nuevo permiso': PermisosCrear,
+            'Vacaciones': Vacaciones,
+            'agregar nueva vaciones': VacacionesCrear,
+
+
+
+            'Informe de Empleados': Empleadosinac,
+            'Informe de Nomina': InformeNomina,
+            'Informe de permisos': InformePermisos,
+            'Informe de vacaciones': InfomreVacaciones,
+            'Informe de licencias': InformeLicencias,
+            'Informe de salidas': InfomeSalidas,
+
+
+
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+        annyang.setLanguage("es-MX")
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+    function escucha() {
+        annyang.start();
+    }
+    function Empleado() {
+        document.location.href = "http://localhost:53909/Empleados";
+    }
+    function EmpleadoCrear() {
+        document.location.href = "http://localhost:53909/Empleados/Create";
+    }
+    function EmpleadoEli() {
+        document.location.href = "http://localhost:53909/Empleados/Create";
+    }
+    function Cargo() {
+        document.location.href = "http://localhost:53909/cargoes";
+    }
+    function CargoCrear() {
+        document.location.href = "http://localhost:53909/cargoes/Create";
+    }
+    function CargoEli() {
+        document.location.href = "http://localhost:53909/cargoes/Create";
+    }
+    function Departamento() {
+        document.location.href = "http://localhost:53909/Departamentoes";
+    }
+    function DepartamentoCrear() {
+        document.location.href = "http://localhost:53909/Departamentoes/Create";
+    }
+    function DepartamentoEli() {
+        document.location.href = "http://localhost:53909/Departamentoes/Create";
+    }
+
+
+
+
+    function Licencia() {
+        document.location.href = "http://localhost:53909/Licencias";
+    }
+    function LicenciaCrear() {
+        document.location.href = "http://localhost:53909/Licencias/Create";
+    }
+    function Nomina() {
+        document.location.href = "http://localhost:53909/Nominas";
+    }
+    function NominaCrear() {
+        document.location.href = "http://localhost:53909/Nominas/Create";
+    }
+    function Salida() {
+        document.location.href = "http://localhost:53909/Salidas";
+    }
+
+    function SalidaCrear() {
+        document.location.href = "http://localhost:53909/Salidas/Create";
+    }
+    function Permisos() {
+        document.location.href = "http://localhost:53909/Permisoes";
+    }
+    function PermisosCrear() {
+        document.location.href = "http://localhost:53909/Permisoes/Create";
+    }
+    function VacacionesCrear() {
+        document.location.href = "http://localhost:53909/Vacaciones/Create";
+    }
+    function Vacaciones() {
+        document.location.href = "http://localhost:53909/Vacaciones";
+    }
+
+
+
+    function Empleadosinac() {
+        document.location.href = "http://localhost:53909/Empleados/Inactivo";
+    }
+    function InformeNomina() {
+        document.location.href = "http://localhost:53909/Nominas/NominaInforme";
+    }
+    function InformePermisos() {
+        document.location.href = "http://localhost:53909/Permisoes/PermisosInforme";
+    }
+    function InfomreVacaciones() {
+        document.location.href = "http://localhost:53909/Vacaciones/VacacionesInforme";
+    }
+    function InformeLicencias() {
+        document.location.href = "http://localhost:53909/Licencias/LicenciasInforme";
+    }
+    function InfomeSalidas() {
+        document.location.href = "http://localhost:53909/Salidas/SalidasInforme";
+    }
+
+</script>

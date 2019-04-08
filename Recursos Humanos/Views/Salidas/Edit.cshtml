@@ -1,0 +1,211 @@
+﻿@model Recursos_Humanos.Models.Salida
+@using Recursos_Humanos.Models
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<h2>Edit</h2>
+
+<div class="container">
+    @Html.ActionLink(" ", "Index", null, new { @class = "fas fa-arrow-circle-left btn btn-primary" })
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Salida</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-row">
+            <div class="form-group col-md-5" style="margin-left: 1%;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.FK_Empleado, "FK_Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("FK_Empleado", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FK_Empleado, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-5">
+                @Html.LabelFor(model => model.Tipo_Salida, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(model => model.Tipo_Salida,
+                                      new SelectList(Enum.GetValues(typeof(TipoSalida))),
+                                                     "Seleccione Motivo de salida", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Tipo_Salida, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Motivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Motivo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Motivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3" style="margin-left: 1%;">
+                @Html.LabelFor(model => model.Dia, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Dia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dia, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.Mes, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Mes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mes, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Año, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Año, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Año, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+    if (annyang) {
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+            'show tps report': function () {
+                $('#tpsreport').animate({ bottom: '-100px' });
+            },
+
+            'Cargo': Cargo,
+            'agregar nuevo cargo':CargoCrear,
+            'Departamento': Departamento,
+            'agregar nuevo Departamento': DepartamentoCrear,
+            'Empleado': Empleado,
+            'agregar nuevo Empleado':EmpleadoCrear,
+
+            'Nomina': Nomina,
+            'agregar nueva Nomina': NominaCrear,
+            'Salida': Salida,
+            'agregar nueva salida': SalidaCrear,
+            'Licencia': Licencia,
+            'agregar nueva licencia': LicenciaCrear,
+            'Permiso': Permisos,
+            'agregar nuevo permiso': PermisosCrear,
+            'Vacaciones': Vacaciones,
+            'agregar nueva vaciones': VacacionesCrear,
+
+
+
+            'Informe de Empleados': Empleadosinac,
+            'Informe de Nomina': InformeNomina,
+            'Informe de permisos': InformePermisos,
+            'Informe de vacaciones': InfomreVacaciones,
+            'Informe de licencias': InformeLicencias,
+            'Informe de salidas': InfomeSalidas,
+
+
+
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+        annyang.setLanguage("es-MX")
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+
+    function Empleado() {
+        document.location.href = "http://localhost:53909/Empleados";
+    }
+    function EmpleadoCrear() {
+        document.location.href = "http://localhost:53909/Empleados/Create";
+    }
+    function EmpleadoEli() {
+        document.location.href = "http://localhost:53909/Empleados/Create";
+    }
+    function Cargo() {
+        document.location.href = "http://localhost:53909/cargoes";
+    }
+    function CargoCrear() {
+        document.location.href = "http://localhost:53909/cargoes/Create";
+    }
+    function CargoEli() {
+        document.location.href = "http://localhost:53909/cargoes/Create";
+    }
+    function Departamento() {
+        document.location.href = "http://localhost:53909/Departamentoes";
+    }
+    function DepartamentoCrear() {
+        document.location.href = "http://localhost:53909/Departamentoes/Create";
+    }
+    function DepartamentoEli() {
+        document.location.href = "http://localhost:53909/Departamentoes/Create";
+    }
+
+
+
+
+        function Licencia() {
+            document.location.href = "http://localhost:53909/Licencias";
+    }
+    function LicenciaCrear() {
+        document.location.href = "http://localhost:53909/Licencias/Create";
+    }
+    function Nomina() {
+        document.location.href = "http://localhost:53909/Nominas";
+    }
+    function NominaCrear() {
+        document.location.href = "http://localhost:53909/Nominas/Create";
+    }
+    function Salida() {
+        document.location.href = "http://localhost:53909/Salidas";
+    }
+
+    function SalidaCrear() {
+        document.location.href = "http://localhost:53909/Salidas/Create";
+    }
+    function Permisos() {
+            document.location.href = "http://localhost:53909/Permisoes";
+    }
+    function PermisosCrear() {
+        document.location.href = "http://localhost:53909/Permisoes/Create";
+    }
+        function VacacionesCrear() {
+            document.location.href = "http://localhost:53909/Vacaciones/Create";
+        }
+    function Vacaciones() {
+        document.location.href = "http://localhost:53909/Vacaciones";
+    }
+
+
+
+        function Empleadosinac() {
+            document.location.href = "http://localhost:53909/Empleados/Inactivo";
+        }
+        function InformeNomina() {
+            document.location.href = "http://localhost:53909/Nominas/NominaInforme";
+        }
+        function InformePermisos() {
+            document.location.href = "http://localhost:53909/Permisoes/PermisosInforme";
+        }
+        function InfomreVacaciones() {
+            document.location.href = "http://localhost:53909/Vacaciones/VacacionesInforme";
+        }
+        function InformeLicencias() {
+            document.location.href = "http://localhost:53909/Licencias/LicenciasInforme";
+        }
+        function  InfomeSalidas() {
+            document.location.href = "http://localhost:53909/Salidas/SalidasInforme";
+        }
+
+</script>
